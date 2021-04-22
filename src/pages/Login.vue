@@ -11,9 +11,7 @@
                     <q-tab label="登录" name="one" />
                     <q-tab label="注册" name="two" />
                 </q-tabs>
-
                 <q-separator />
-
                 <q-tab-panels v-model="tab" animated>
                     <q-tab-panel name="one">
                         <q-input bottom-slots v-model="username" label="用户名" type="text" >
@@ -35,16 +33,13 @@
                             </template>
                         </q-input>
                         <div class="row justify-end">
-                            <q-btn flat color="primary"  label="登录" />
+                            <q-btn flat color="primary"  label="登录" class="col-2" @click="login"/>
                         </div>
                     </q-tab-panel>
-
                     <q-tab-panel name="two">
                         <q-stepper
                             v-model="step"
-                            header-nav
                             vertical
-                            ref="stepper"
                             color="primary"
                             class="no-shadow"
                             animated
@@ -52,46 +47,54 @@
                             <q-step
                                 :name="1"
                                 title="选择你的身份"
-                                icon="settings"
+                                icon="fingerprint"
                                 :done="step > 1"
                                 :header-nav="step > 1"
                             >
-                                For each ad campaign that you create, you can control how much you're willing to
-                                spend on clicks and conversions, which networks and geographical locations you want
-                                your ads to show on, and more.
-
+                                <q-select v-model="identity" :options="identityOptions" label="身份" />
                                 <q-stepper-navigation>
-                                    <q-btn @click="() => { done1 = true; step = 2 }" color="primary" label="Continue" />
+                                    <q-btn flat color="primary" label="继续" @click="() => { done1 = true; step = 2 }" :disable="identity === ''" />
                                 </q-stepper-navigation>
                             </q-step>
                             <q-step
                                 :name="2"
-                                title="Create an ad group"
-                                caption="Optional"
-                                icon="create_new_folder"
+                                title="输入用户名"
+                                icon="person"
                                 :done="step > 2"
                                 :header-nav="step > 2"
                             >
-                                An ad group contains one or more ads which target a shared set of keywords.
-
+                                <q-input bottom-slots v-model="usernameSignUp" label="用户名" type="text" >
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="usernameSignUp === '' ? '' : 'close'"
+                                            class="cursor-pointer"
+                                            @click="usernameSignUp = ''"
+                                        />
+                                    </template>
+                                </q-input>
                                 <q-stepper-navigation>
-                                    <q-btn @click="() => { done2 = true; step = 3 }" color="primary" label="Continue" />
-                                    <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
+                                    <q-btn flat color="primary" label="继续" @click="() => { done2 = true; step = 3 }" :disable="usernameSignUp === ''" />
+                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 1"  />
                                 </q-stepper-navigation>
                             </q-step>
                             <q-step
                                 :name="3"
-                                title="Create an ad"
-                                icon="add_comment"
+                                title="输入密码"
+                                icon="password"
                                 :header-nav="step > 3"
                             >
-                                Try out different ad text to see what brings in the most customers, and learn how to
-                                enhance your ads using features like ad extensions. If you run into any problems with
-                                your ads, find out how to tell if they're running and how to resolve approval issues.
-
+                                <q-input bottom-slots v-model="passwordSignUp" label="密码" :type="isPwdSignUp ? 'password' : 'text'">
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="isPwdSignUp ? 'visibility_off' : 'visibility'"
+                                            class="cursor-pointer"
+                                            @click="isPwdSignUp = !isPwdSignUp"
+                                        />
+                                    </template>
+                                </q-input>
                                 <q-stepper-navigation>
-                                    <q-btn color="primary" @click="done3 = true" label="Finish" />
-                                    <q-btn flat @click="step = 2" color="primary" label="Back" class="q-ml-sm" />
+                                    <q-btn flat color="primary" label="注册" @click="signUp" :disable="passwordSignUp === ''" />
+                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 2"  />
                                 </q-stepper-navigation>
                             </q-step>
                         </q-stepper>
@@ -104,8 +107,8 @@
 </template>
 
 <script>
+import { api } from 'boot/axios'
 import { ref } from 'vue'
-
 export default {
     setup () {
         return {
@@ -117,7 +120,28 @@ export default {
             username: '',
             password: '',
             isPwd: true,
-            step: 1
+            step: 1,
+            identity: '',
+            identityOptions: ['管理员', '医生', '护士', '普通用户', '何见光明'],
+            usernameSignUp: '',
+            isPwdSignUp: true,
+            passwordSignUp: ''
+        }
+    },
+    methods: {
+        login () {
+            api.get('/test/loginsuccess.php')
+            .then((response) => {
+                console.log(response.data)
+            })
+            .catch()
+        },
+        signUp () {
+            api.get('/test/loginsuccess.php')
+            .then((response) => {
+                console.log(response.data)
+            })
+            .catch()
         }
     }
 }

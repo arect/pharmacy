@@ -4,7 +4,9 @@ const routes = [
         component: () => import('layouts/FrameWithDrawer'),
         children: [
             { path: 'all', component: () => import('pages/Warehouse') },
-            { path: 'settings', component: () => import('pages/Index') }
+            { path: 'user-home', component: () => import('pages/UserHome') },
+            { path: 'settings', component: () => import('pages/Index') },
+            { path: 'edit-medical/:id', component: () => import('pages/EditMedical') }
         ]
     }, {
         path: '/login',

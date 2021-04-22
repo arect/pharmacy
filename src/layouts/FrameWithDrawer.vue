@@ -2,8 +2,22 @@
     <q-layout view="hHh Lpr lff" class="rounded-borders">
         <q-header elevated>
             <q-bar :class="{ 'q-electron-drag': platform }" v-if="platform" >
-                <q-icon name="medical_services" />
-                <div>药店</div>
+                <transition
+                    enter-active-class="animated fadeIn"
+                    leave-active-class="animated fadeOut"
+                    mode="out-in"
+                >
+                    <div class="row items-center" v-if="show" >
+                        <q-icon name="medical_services" />
+                        &ensp;
+                        <div>药店</div>
+                    </div>
+                    <div class="row items-center text-red-11" v-else >
+                        <q-icon name="flag" />
+                        &ensp;
+                        <div>在这里设置警告</div>
+                    </div>
+                </transition>
                 <q-space />
                 <q-btn dense flat icon="minimize" @click="minimize" />
                 <q-btn dense flat icon="crop_square" @click="toggleMaximize" />
@@ -20,10 +34,10 @@
                         &ensp;
                         <div>药店</div>
                     </div>
-                    <div class="row items-center" v-else >
+                    <div class="row items-center text-red-11" v-else >
                         <q-icon name="flag" />
                         &ensp;
-                        <div>未连接到互联网</div>
+                        <div>在这里设置警告</div>
                     </div>
                 </transition>
             </q-bar>
@@ -32,21 +46,31 @@
                 <q-toolbar-title>{{ activeItem }}</q-toolbar-title>
                 <q-space />
                 <q-btn flat @click="back()" round icon="arrow_back"  />
+                <q-btn flat @click="show = !show" round icon="visibility"  />
+                <q-btn flat round icon="help_outline">
+                    <q-popup-proxy >
+                        <q-banner>
+                            <div v-for="i of myInfo" :key="i.value">
+                                {{ i.title }}：{{ i.value }}
+                            </div>
+                        </q-banner>
+                    </q-popup-proxy>
+                </q-btn>
             </q-toolbar>
         </q-header>
 
         <q-drawer
             v-model="drawer"
-            :width="200"
+            :width="300"
             :breakpoint="1000"
             overlay
             bordered
-            class="bg-grey-3"
+            class="bg-grey-3 q-electron-drag--exception"
         >
             <q-scroll-area class="fit">
                 <q-list>
                     <template v-for="(menuItem, index) in menuList" :key="index">
-                        <q-item clickable :active="menuItem.label === activeItem" v-ripple @click="activeItem = menuItem.label" >
+                        <q-item clickable :active="menuItem.label === activeItem" v-ripple @click="changeTab(menuItem.label)" >
                             <q-item-section avatar>
                                 <q-icon :name="menuItem.icon" />
                             </q-item-section>
@@ -59,7 +83,6 @@
                 </q-list>
             </q-scroll-area>
         </q-drawer>
-
         <q-page-container>
             <router-view />
         </q-page-container>
@@ -69,6 +92,7 @@
 <script>
 const menuList = [
     { icon: 'medical_services', label: '全部药品', separator: false, link: 'all' },
+    { icon: 'person', label: '我的页面', separator: false, link: 'user-home' },
     { icon: 'settings', label: '设置', separator: false, link: 'settings' }
 ]
 export default {
@@ -92,33 +116,57 @@ export default {
             }
         }
 
-        return { minimize, toggleMaximize, closeApp }
+        return {
+            minimize,
+            toggleMaximize,
+            closeApp
+        }
     },
     data () {
         return {
             drawer: false,
             menuList,
             activeItem: '主页',
-            show: true
+            show: true,
+            timestamp: '暂停'
         }
     },
     computed: {
         platform () {
             return process.env.MODE === 'electron'
+        },
+        myInfo () {
+            return [
+                { title: '用户名', value: this.$store.state.myToken.username },
+                { title: 'token', value: this.$store.state.myToken.token },
+                { title: '时间戳', value: this.timestamp }
+            ]
         }
     },
-    watch: {
-        activeItem (newActiveItem, oldActiveItem) {
-            for (const item of menuList) {
-                if (item.label === newActiveItem) {
-                    this.$router.push(item.link)
-                }
-            }
+    /*
+    mounted () {
+        this.timer = setInterval(() => {
+            this.timestamp = (new Date()).valueOf() / 1000
+        }, 1000)
+    },
+    beforeUnmount () {
+        if (this.timer) {
+            clearInterval(this.timer)
         }
     },
+
+     */
     methods: {
         back () {
             this.$router.back()
+        },
+        changeTab (t) {
+            this.activeItem = t
+            for (const item of menuList) {
+                if (item.label === t) {
+                    this.$router.push('/' + item.link)
+                }
+            }
         }
     }
 }
