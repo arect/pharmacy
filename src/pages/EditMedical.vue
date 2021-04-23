@@ -6,19 +6,22 @@
             :visible="false"
             style="height: 100%"
         >
-            没做
-            {{ medical.id }}
+            <q-table
+                title="详细信息"
+                :rows="rows"
+                :columns="columns"
+                row-key="name"
+                flat
+            />
         </q-scroll-area>
     </q-page>
 </template>
 
 <script>
-import { api } from 'boot/axios'
 export default {
     name: 'EditMedical',
     data () {
         return {
-            m: 'test',
             thumbStyle: {
                 right: '4px',
                 borderRadius: '5px',
@@ -34,20 +37,45 @@ export default {
                 opacity: 0.2
             },
             medical: {
-                title: 'title',
-                introduction: '如果你看到这句话，说明没有联网',
                 id: this.$route.params.id,
-                sum: 0,
-                price: 0
-            }
+                name: '冰毒',
+                spec: '',
+                price: 100,
+                effective: '让人爽歪歪',
+                producer: '张博清制毒局',
+                produceDate: '2021-4-23',
+                effectiveDate: '2022-4-22',
+                remark: '张博清诚意制作，大师手工打造'
+            },
+            columns: [
+                { name: 'name', label: '属性', sortable: false, align: 'left', field: 'name' },
+                { name: 'value', label: '值', sortable: false, align: 'left', field: 'value' }
+            ],
+            rows: []
         }
     },
-    beforeCreate () {
-        api.get('/test/loginsuccess.php')
-        .then((response) => {
-            this.m = response.data
-        })
-        .catch()
+    beforeMount () {
+        this.medical = {
+            id: this.$route.params.id,
+            name: '冰毒',
+            spec: '',
+            price: 100,
+            effective: '让人爽歪歪',
+            producer: '张博清制毒局',
+            produceDate: '2021-4-23',
+            effectiveDate: '2022-4-22',
+            remark: '张博清诚意制作，大师手工打造'
+        }
+        this.rows = [
+            { name: '药品名称', value: this.medical.name },
+            { name: 'spec', value: this.medical.spec },
+            { name: '价格', value: this.medical.price },
+            { name: '功效', value: this.medical.effective },
+            { name: '厂商', value: this.medical.producer },
+            { name: '生产日期', value: this.medical.produceDate },
+            { name: '有效期', value: this.medical.effectiveDate },
+            { name: '备注', value: this.medical.remark }
+        ]
     },
     methods: {
         myStyle (offset) {
