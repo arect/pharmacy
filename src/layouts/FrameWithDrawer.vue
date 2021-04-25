@@ -35,9 +35,11 @@
                         <div>药店</div>
                     </div>
                     <div class="row items-center text-red-11" v-else >
-                        <q-icon name="flag" />
+                        <q-spinner-ios
+                            size="1.2em"
+                        />
                         &ensp;
-                        <div>在这里设置警告</div>
+                        <span>加载中</span>
                     </div>
                 </transition>
             </q-bar>
@@ -91,9 +93,11 @@
 
 <script>
 const menuList = [
-    { icon: 'medical_services', label: '全部药品', separator: false, link: 'all' },
-    { icon: 'person', label: '我的页面', separator: false, link: 'user-home' },
-    { icon: 'settings', label: '设置', separator: false, link: 'settings' }
+    { icon: 'medical_services', label: '全部药品', separator: false, link: '/all' },
+    { icon: 'person', label: '全部订单', separator: false, link: '/all-orders' },
+    { icon: 'add', label: '添加订单', separator: false, link: '/add-order' },
+    { icon: 'person', label: '我的页面', separator: false, link: '/user-home' },
+    { icon: 'settings', label: '设置', separator: false, link: '/settings' }
 ]
 export default {
     name: 'FrameWithDrawer',
@@ -164,7 +168,7 @@ export default {
             this.activeItem = t
             for (const item of menuList) {
                 if (item.label === t) {
-                    this.$router.push('/' + item.link)
+                    this.$router.push(item.link)
                 }
             }
         }

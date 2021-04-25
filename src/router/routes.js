@@ -5,6 +5,8 @@ const routes = [
         children: [
             { path: 'all', component: () => import('pages/Warehouse') },
             { path: 'user-home', component: () => import('pages/UserHome') },
+            { path: 'all-orders', component: () => import('pages/AllOrders') },
+            { path: 'add-order', component: () => import('pages/AddOrder') },
             { path: 'settings', component: () => import('pages/Index') },
             { path: 'edit-medical/:id', component: () => import('pages/EditMedical') }
         ]

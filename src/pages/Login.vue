@@ -1,7 +1,7 @@
 <template>
     <div class="q-pa-md row" >
         <div class="col"></div>
-        <div class="col-8 col-xs-10 col-md-8 col-lg-6">
+        <div class="col-xs-11 col-sm-10 col-md-9 col-lg-7 col-xl-6">
             <q-card flat bordered class="my-card">
                 <q-card-section style="text-align: center">
                     <div class="text-h6">开始</div>
@@ -79,9 +79,51 @@
                             </q-step>
                             <q-step
                                 :name="3"
+                                title="输入邮箱"
+                                icon="mail"
+                                :done="step > 3"
+                                :header-nav="step > 3"
+                            >
+                                <q-input bottom-slots v-model="emailSignUp" label="电子邮箱" type="email" >
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="emailSignUp === '' ? '' : 'close'"
+                                            class="cursor-pointer"
+                                            @click="emailSignUp = ''"
+                                        />
+                                    </template>
+                                </q-input>
+                                <q-stepper-navigation>
+                                    <q-btn flat color="primary" label="继续" @click="() => { done3 = true; step = 4 }" :disable="emailSignUp === ''" />
+                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 2"  />
+                                </q-stepper-navigation>
+                            </q-step>
+                            <q-step
+                                :name="4"
+                                title="输入电话号码"
+                                icon="phone"
+                                :done="step > 4"
+                                :header-nav="step > 4"
+                            >
+                                <q-input bottom-slots v-model="phoneSignUp" label="电话号码" type="tel" >
+                                    <template v-slot:append>
+                                        <q-icon
+                                            :name="phoneSignUp === '' ? '' : 'close'"
+                                            class="cursor-pointer"
+                                            @click="phoneSignUp = ''"
+                                        />
+                                    </template>
+                                </q-input>
+                                <q-stepper-navigation>
+                                    <q-btn flat color="primary" label="继续" @click="() => { done4 = true; step = 5 }" :disable="phoneSignUp === ''" />
+                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 3"  />
+                                </q-stepper-navigation>
+                            </q-step>
+                            <q-step
+                                :name="5"
                                 title="输入密码"
                                 icon="password"
-                                :header-nav="step > 3"
+                                :header-nav="step > 5"
                             >
                                 <q-input bottom-slots v-model="passwordSignUp" label="密码" :type="isPwdSignUp ? 'password' : 'text'">
                                     <template v-slot:append>
@@ -94,7 +136,7 @@
                                 </q-input>
                                 <q-stepper-navigation>
                                     <q-btn flat color="primary" label="注册" @click="signUp" :disable="passwordSignUp === ''" />
-                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 2"  />
+                                    <q-btn flat color="blue-grey" label="上一项" @click="step = 4"  />
                                 </q-stepper-navigation>
                             </q-step>
                         </q-stepper>
@@ -124,6 +166,8 @@ export default {
             identity: '',
             identityOptions: ['管理员', '医生', '护士', '普通用户', '何见光明'],
             usernameSignUp: '',
+            emailSignUp: '',
+            phoneSignUp: '',
             isPwdSignUp: true,
             passwordSignUp: ''
         }
