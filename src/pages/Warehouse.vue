@@ -12,8 +12,6 @@
                         <q-card-section>
                             <div class="text-h6">{{ c.name }}</div>
                             <div class="text-subtitle2 text-italic">{{ c.brand }}</div>
-                        </q-card-section>
-                        <q-card-section>
                             {{ c.remark }}
                         </q-card-section>
                         <q-separator dark />

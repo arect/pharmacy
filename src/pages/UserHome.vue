@@ -9,10 +9,7 @@
             <div class="row justify-center">
                 <q-card class="col-xs-11 col-sm-10 col-md-9 col-lg-7 col-xl-6" flat bordered>
                     <div class="flex flex-center" style="height: 200px">
-                        <q-img
-                            src="https://www.jlu.edu.cn/images/big/jd-xhh.jpg"
-                            style="height: 100px; width: 100px; border-radius: 50%"
-                        />
+                        <q-avatar size="100px" font-size="52px" color="primary" text-color="white" icon="person" />
                     </div>
                     <q-card-section>
                         <div class="text-overline text-orange-9">{{ authName }}</div>

@@ -18,25 +18,11 @@
                                 </div>
                                 <q-input v-model="searchContent" label="搜索内容" >
                                     <template v-slot:append>
-                                        <q-btn round flat icon="search" @click="searchServer" />
-                                        <q-btn-dropdown flat label="搜索全部">
+                                        <q-btn-dropdown flat label="搜索何处">
                                             <q-list>
-                                                <q-btn flat icon="search" @click="searchServer" />
-                                                <q-item clickable v-close-popup @click="onItemClick">
+                                                <q-item clickable v-close-popup v-for="item of columns" @click="searchServer(item.name)" :key="item.name" >
                                                     <q-item-section>
-                                                        <q-item-label>Photos</q-item-label>
-                                                    </q-item-section>
-                                                </q-item>
-
-                                                <q-item clickable v-close-popup @click="onItemClick">
-                                                    <q-item-section>
-                                                        <q-item-label>Videos</q-item-label>
-                                                    </q-item-section>
-                                                </q-item>
-
-                                                <q-item clickable v-close-popup @click="onItemClick">
-                                                    <q-item-section>
-                                                        <q-item-label>Articles</q-item-label>
+                                                        <q-item-label>{{ item.label }}</q-item-label>
                                                     </q-item-section>
                                                 </q-item>
                                             </q-list>
@@ -107,16 +93,7 @@ export default {
         }
     },
     beforeMount () {
-        this.columns = [
-            { name: 'ID', label: '订单ID', field: 'ID' },
-            { name: 'medicineId', label: '药品ID', field: 'medicineId' },
-            { name: 'medicineName', label: '药品名称', field: 'medicineName' },
-            { name: 'importPrice', label: '进货价格', field: 'importPrice' },
-            { name: 'number', label: '进货数量', field: 'number' },
-            { name: 'importDate', label: '进货日期', field: 'importDate' },
-            { name: 'dealerId', label: '入库人ID', field: 'dealerId' },
-            { name: 'remark', label: '备注', field: 'remark' }
-        ]
+        this.changeColumns('Order')
         this.rows = []
     },
     computed: {
@@ -132,7 +109,7 @@ export default {
             this.isDeleting = true
             for (const o of this.selected) {
                 for (let i = 0; i < this.rows.length; i++) {
-                    if (this.rows[i].orderId === o.orderId) {
+                    if (this.rows[i].ID === o.ID) {
                         this.rows.splice(i, 1)
                         i--
                     }
@@ -141,7 +118,7 @@ export default {
             this.selected = []
             this.isDeleting = false
         },
-        searchServer () {
+        searchServer (where) {
             this.isLoading = !this.isLoading
             // TODO
         },
