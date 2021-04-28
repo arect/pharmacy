@@ -42,10 +42,10 @@
                                     use-input
                                     input-debounce="0"
                                     :label="item.label"
-                                    :options="idOptions[item.name]"
+                                    :options="activeIdOptions(item.name)"
                                     @filter="filterFn"
                                     behavior="dialog"
-                                    :rules="[val => val !== '' || '不能为空']"
+                                    :rules="[val => (val !== '' && val !== null) || '不能为空']"
                                 >
                                     <template v-slot:option="scope">
                                         <q-item v-bind="scope.itemProps">
@@ -73,7 +73,7 @@
                         </div>
                     </q-card-section>
                     <q-card-section class="row justify-end">
-                        <q-btn flat class="text-primary">提交</q-btn>
+                        <q-btn flat :class="{ 'text-primary': canSubmit, 'text-red': !canSubmit }" @click="submit" :disable="!canSubmit">提交</q-btn>
                     </q-card-section>
                 </q-card>
             </div>
@@ -102,31 +102,38 @@ export default {
             },
             columns: [],
             table: 'Order',
-            idOptionsConst: {},
-            idOptions: {}
+            medicineIDConst: [],
+            dealerIDConst: [],
+            orderIDConst: [],
+            customerIDConst: [],
+            medicineID: [],
+            dealerID: [],
+            orderID: [],
+            customerID: []
         }
     },
     beforeMount () {
         this.changeColumns('Order')
-        this.idOptionsConst = {
-            medicineID: [
-                { label: '冰毒', value: 1111111 }
-            ],
-            dealerID: [
-                { label: '张博清', value: 12345678901 },
-                { label: '张博清2', value: 12345678902 },
-                { label: '2张博清', value: 12345678903 }
-            ],
-            orderID: [
-                { label: 'test', value: 111 }
-            ],
-            customerID: [
-                { label: '张博清', value: 12345678901 },
-                { label: '张博清2', value: 12345678902 },
-                { label: '2张博清', value: 12345678903 }
-            ]
-        }
-        this.idOptions = this.idOptionsConst
+        this.medicineIDConst = [
+            { label: '冰毒', value: 1111111 }
+        ]
+        this.dealerIDConst = [
+            { label: '张博清', value: 12345678901 },
+            { label: '张博清2', value: 12345678902 },
+            { label: '2张博清', value: 12345678903 }
+        ]
+        this.orderIDConst = [
+            { label: 'test', value: 111 }
+        ]
+        this.customerIDConst = [
+            { label: '张博清', value: 12345678901 },
+            { label: '张博清2', value: 12345678902 },
+            { label: '2张博清', value: 12345678903 }
+        ]
+        this.medicineID = this.medicineIDConst
+        this.dealerID = this.dealerIDConst
+        this.orderID = this.orderIDConst
+        this.customerID = this.customerIDConst
     },
     computed: {
         tableName () {
@@ -137,6 +144,14 @@ export default {
                 case 'Sale': return '销售单'
                 default: return '偷税单'
             }
+        },
+        canSubmit () {
+            for (const i of this.columns) {
+                if (i.name !== 'remark' && (i.value === '' || i.value === null)) {
+                    return false
+                }
+            }
+            return true
         }
     },
     methods: {
@@ -188,14 +203,33 @@ export default {
             }
             return true
         },
-        filterFn (val, update) {
-            if (val !== '') {
-                update(() => {
-                    for (const i in this.idOptionsConst) {
-                        this.idOptions[i] = this.idOptionsConst[i].filter(v => v.label.indexOf(val) > -1)
-                    }
-                })
+        activeIdOptions (which) {
+            switch (which) {
+                case 'medicineID': return this.medicineID
+                case 'dealerID': return this.dealerID
+                case 'orderID': return this.orderID
+                case 'customerID': return this.customerID
             }
+        },
+        filterFn (val, update) {
+            if (val === '') {
+                update(() => {
+                    this.medicineID = this.medicineIDConst
+                    this.dealerID = this.dealerIDConst
+                    this.orderID = this.orderIDConst
+                    this.customerID = this.customerIDConst
+                })
+                return
+            }
+            update(() => {
+                this.medicineID = this.medicineIDConst.filter(v => v.label.indexOf(val) > -1)
+                this.dealerID = this.dealerIDConst.filter(v => v.label.indexOf(val) > -1)
+                this.orderID = this.orderIDConst.filter(v => v.label.indexOf(val) > -1)
+                this.customerID = this.customerIDConst.filter(v => v.label.indexOf(val) > -1)
+            })
+        },
+        submit () {
+            console.log(this.columns)
         }
     }
 }
