@@ -83,7 +83,7 @@
 
 <script>
 export default {
-    name: 'AllOrders',
+    name: 'AddOrder',
     data () {
         return {
             thumbStyle: {

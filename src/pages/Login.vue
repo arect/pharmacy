@@ -152,6 +152,7 @@
 import { api } from 'boot/axios'
 import { ref } from 'vue'
 export default {
+    name: 'Login',
     setup () {
         return {
             tab: ref('one')

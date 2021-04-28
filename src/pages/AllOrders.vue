@@ -120,7 +120,7 @@ export default {
         },
         searchServer (where) {
             this.isLoading = !this.isLoading
-            // TODO
+            // TODO this.row = [result]
         },
         changeColumns (str) {
             this.columns = []

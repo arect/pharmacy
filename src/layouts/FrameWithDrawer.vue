@@ -93,11 +93,13 @@
 
 <script>
 const menuList = [
+    { icon: 'add', label: '添加药品', separator: false, link: '/add-medical' },
+    { icon: 'post_add', label: '添加订单', separator: false, link: '/add-order' },
     { icon: 'medical_services', label: '全部药品', separator: false, link: '/all' },
-    { icon: 'person', label: '全部订单', separator: false, link: '/all-orders' },
-    { icon: 'add', label: '添加订单', separator: false, link: '/add-order' },
-    { icon: 'person', label: '我的页面', separator: false, link: '/user-home' },
-    { icon: 'settings', label: '设置', separator: false, link: '/settings' }
+    { icon: 'bookmark', label: '全部订单', separator: false, link: '/all-orders' },
+    { icon: 'person', label: '客户页面', separator: false, link: '/customer-home' },
+    { icon: 'settings', label: '设置', separator: false, link: '/settings' },
+    { icon: 'person', label: '我的页面', separator: false, link: '/user-home' }
 ]
 export default {
     name: 'FrameWithDrawer',
