@@ -112,12 +112,11 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
     name: 'CustomerHome',
     setup () {
         return {
-            expanded: ref(false)
+            expanded: false
         }
     },
     data () {

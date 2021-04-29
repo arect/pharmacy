@@ -3,13 +3,14 @@ const routes = [
         path: '/',
         component: () => import('layouts/FrameWithDrawer'),
         children: [
+            { path: '', component: () => import('pages/Index') },
             { path: 'add-medical', component: () => import('pages/AddMedical') },
             { path: 'add-order', component: () => import('pages/AddOrder') },
             { path: 'all', component: () => import('pages/Warehouse') },
             { path: 'all-orders', component: () => import('pages/AllOrders') },
             { path: 'customer-home', component: () => import('pages/CustomerHome') },
             { path: 'edit-medical/:id', component: () => import('pages/EditMedical') },
-            { path: 'settings', component: () => import('pages/Index') },
+            { path: 'settings', component: () => import('pages/Settings') },
             { path: 'user-home', component: () => import('pages/UserHome') }
         ]
     }, {
