@@ -15,9 +15,9 @@
                             {{ c.remark }}
                         </q-card-section>
                         <q-separator dark />
-                        <q-card-actions>
-                            <q-btn flat @click="editItem(c.id)" class="text-primary">编辑</q-btn>
-                            <q-btn flat @click="deleteItem(c.id)" class="text-red">删除</q-btn>
+                        <q-card-actions align="around">
+                            <q-btn flat @click="editItem(c.id)" class="text-primary" padding="xs lg">编辑</q-btn>
+                            <q-btn flat @click="deleteItem(c.id)" class="text-red" padding="xs lg">删除</q-btn>
                         </q-card-actions>
                     </q-card>
                 </div>
@@ -34,28 +34,28 @@ export default {
         return {
             m: 'test',
             list: [
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 1 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 2 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 3 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 4 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 5 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 6 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 7 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 7 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 9 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 10 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 11 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 12 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 13 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 14 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 15 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 16 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 17 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 18 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 19 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 20 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 21 },
-                { name: '冰毒', brand: '张博清牌', remark: '一种很好吃的毒品', id: 22 }
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 1 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 2 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 3 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 4 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 5 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 6 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 7 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 7 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 9 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 10 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 11 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 12 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 13 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 14 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 15 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 16 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 17 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 18 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 19 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 20 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 21 },
+                { name: '药品名称', brand: '张博清牌', remark: '药品备注', id: 22 }
             ],
             thumbStyle: {
                 right: '4px',

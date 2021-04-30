@@ -29,7 +29,7 @@ export default {
         setTimer () {
             if (this.timer == null) {
                 this.timer = setInterval(() => {
-                    this.randomIcon = this.icons[Math.floor(Math.random() * 10)]
+                    this.randomIcon = this.icons[Math.floor(Math.random() * this.icons.length)]
                     this.show = !this.show
                 }, 5000)
             }

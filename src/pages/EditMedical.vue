@@ -160,20 +160,20 @@ export default {
     beforeMount () {
         this.medical = {
             id: this.$route.params.id,
-            name: '冰毒',
+            name: '某药品',
             price: 100,
-            brand: '张博清制毒局',
+            brand: '张博清牌',
             remark: '张博清诚意制作，大师手工打造'
         }
         this.stock = [
-            { ID: 1, medicineID: 1, orderID: 1, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
-            { ID: 2, medicineID: 1, orderID: 1, PD: '2021/02/26', EXP: '2022/02/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
-            { ID: 3, medicineID: 1, orderID: 2, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
-            { ID: 4, medicineID: 1, orderID: 2, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
-            { ID: 5, medicineID: 1, orderID: 3, PD: '2020/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
-            { ID: 6, medicineID: 1, orderID: 4, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' },
+            { ID: 1, medicineID: 1, orderID: 1, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' },
+            { ID: 2, medicineID: 1, orderID: 1, PD: '2021/02/26', EXP: '2022/02/25', number: 10, remark: '张博清自豪之作，大师级药品' },
+            { ID: 3, medicineID: 1, orderID: 2, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' },
+            { ID: 4, medicineID: 1, orderID: 2, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' },
+            { ID: 5, medicineID: 1, orderID: 3, PD: '2020/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' },
+            { ID: 6, medicineID: 1, orderID: 4, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' },
             { ID: 7, medicineID: 1, orderID: 4, PD: '2022/04/26', EXP: '2025/04/25', number: 10, remark: '张博清金盆洗手最后一作，大师告别之作' },
-            { ID: 8, medicineID: 1, orderID: 4, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级冰毒' }
+            { ID: 8, medicineID: 1, orderID: 4, PD: '2021/04/26', EXP: '2022/04/25', number: 10, remark: '张博清自豪之作，大师级药品' }
         ]
         for (const s of this.stock) {
             s.isShow = true

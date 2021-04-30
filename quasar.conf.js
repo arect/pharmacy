@@ -136,9 +136,9 @@ module.exports = configure(function (ctx) {
             },
 
             manifest: {
-                name: 'Quasar App',
-                short_name: 'Quasar App',
-                description: 'A Quasar Framework app',
+                name: '药店',
+                short_name: 'Pharmacy',
+                description: '一个药店管理服务',
                 display: 'standalone',
                 orientation: 'portrait',
                 background_color: '#ffffff',

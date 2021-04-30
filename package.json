@@ -1,8 +1,8 @@
 {
     "name": "pharmacy",
-    "version": "0.0.1",
-    "description": "A Quasar Framework app",
-    "productName": "Quasar App",
+    "version": "0.1.0",
+    "description": "一个药店管理服务",
+    "productName": "药店",
     "author": "Arect",
     "private": true,
     "scripts": {

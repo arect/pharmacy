@@ -136,6 +136,13 @@ export default {
                     { name: 'orderDate', label: '下单日期', field: 'orderDate' },
                     { name: 'remark', label: '备注', field: 'remark' }
                 ]
+                this.rows = [
+                    { ID: 1, medicineID: 1, PD: '2021/04/15', EXP: '2022/04/14', price: 10.5, number: 50, dealerID: 1, orderDate: '2021/04/16', remark: '刚生产的可新鲜了' },
+                    { ID: 2, medicineID: 1, PD: '2021/04/15', EXP: '2022/04/14', price: 10.5, number: 10, dealerID: 2, orderDate: '2021/04/16', remark: '' },
+                    { ID: 3, medicineID: 2, PD: '2021/01/20', EXP: '2022/01/19', price: 199, number: 18, dealerID: 2, orderDate: '2021/04/16', remark: '挺贵的' },
+                    { ID: 4, medicineID: 3, PD: '2020/04/15', EXP: '2021/04/14', price: 5, number: 99, dealerID: 1, orderDate: '2021/04/16', remark: '没事还能吃' },
+                    { ID: 5, medicineID: 3, PD: '2022/04/15', EXP: '2023/04/14', price: 0.5, number: 10, dealerID: 3, orderDate: '2021/04/16', remark: '未来科技' }
+                ]
             } else if (str === 'Stock') {
                 this.columns = [
                     { name: 'ID', label: '订单ID', field: 'ID' },
@@ -146,6 +153,12 @@ export default {
                     { name: 'number', label: '数量', field: 'number' },
                     { name: 'remark', label: '备注', field: 'remark' }
                 ]
+                this.rows = [
+                    { ID: 1, medicineID: 1, orderID: 1, PD: '2021/04/15', EXP: '2022/04/14', number: 50, remark: '存了不少' },
+                    { ID: 2, medicineID: 1, orderID: 1, PD: '2021/04/15', EXP: '2022/04/14', number: 10, remark: '' },
+                    { ID: 3, medicineID: 2, orderID: 1, PD: '2021/01/20', EXP: '2022/01/19', number: 18, remark: '快没了' },
+                    { ID: 4, medicineID: 3, orderID: 1, PD: '2020/04/15', EXP: '2021/04/14', number: 99, remark: '挺多的' }
+                ]
             } else if (str === 'Sale') {
                 this.columns = [
                     { name: 'ID', label: '订单ID', field: 'ID' },
@@ -155,6 +168,12 @@ export default {
                     { name: 'dealerID', label: '入库人ID', field: 'dealerID' },
                     { name: 'saleDate', label: '购买日期', field: 'saleDate' },
                     { name: 'remark', label: '备注', field: 'remark' }
+                ]
+                this.rows = [
+                    { ID: 1, medicineID: 1, customerID: 1, saleDate: '2021/04/15', number: 1, dealerID: 1, remark: '刚买没多久' },
+                    { ID: 2, medicineID: 2, customerID: 1, saleDate: '2021/04/15', number: 2, dealerID: 2, remark: '一起买的' },
+                    { ID: 3, medicineID: 2, customerID: 1, saleDate: '2021/01/20', number: 8, dealerID: 2, remark: '买了挺多' },
+                    { ID: 4, medicineID: 3, customerID: 1, saleDate: '2020/04/15', number: 1, dealerID: 6, remark: '' }
                 ]
             }
         }
