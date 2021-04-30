@@ -94,11 +94,15 @@ export default {
     },
     beforeMount () {
         this.changeColumns('Order')
-        this.rows = []
     },
     computed: {
         isSelected () {
             return this.selected.length !== 0
+        }
+    },
+    watch: {
+        whichOrder (n, o) {
+            this.changeColumns(n)
         }
     },
     methods: {

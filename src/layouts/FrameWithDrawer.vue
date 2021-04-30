@@ -48,7 +48,7 @@
                 <q-toolbar-title>{{ activeItem }}</q-toolbar-title>
                 <q-space />
                 <q-btn flat @click="back()" round icon="arrow_back"  />
-                <q-btn flat @click="show = !show" round icon="visibility"  />
+                <!--q-btn flat @click="show = !show" round icon="visibility"  />
                 <q-btn flat round icon="help_outline">
                     <q-popup-proxy >
                         <q-banner>
@@ -57,7 +57,7 @@
                             </div>
                         </q-banner>
                     </q-popup-proxy>
-                </q-btn>
+                </q-btn-->
             </q-toolbar>
         </q-header>
 

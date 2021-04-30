@@ -21,6 +21,7 @@
         "@quasar/app": "^3.0.0-beta.1",
         "babel-eslint": "^10.0.1",
         "electron": "^12.0.4",
+        "electron-packager": "^14.1.1",
         "eslint": "^7.14.0",
         "eslint-config-standard": "^16.0.2",
         "eslint-plugin-import": "^2.19.1",

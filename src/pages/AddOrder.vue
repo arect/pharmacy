@@ -54,7 +54,7 @@
                                             </q-item-section>
                                             <q-item-section>
                                                 <q-item-label>{{ scope.opt.label }}</q-item-label>
-                                                <q-item-label caption>{{ scope.opt.value }}</q-item-label>
+                                                <q-item-label caption>ID: {{ scope.opt.value }}</q-item-label>
                                             </q-item-section>
                                         </q-item>
                                     </template>
@@ -115,7 +115,7 @@ export default {
     beforeMount () {
         this.changeColumns('Order')
         this.medicineIDConst = [
-            { label: '冰毒', value: 1111111 }
+            { label: '某药品', value: 1111111 }
         ]
         this.dealerIDConst = [
             { label: '张博清', value: 12345678901 },
